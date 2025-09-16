@@ -1,0 +1,159 @@
+{
+    "permissions": [
+     
+        "Create farm",
+        "Edit farm",
+        "View farm",
+        "Delete farm",
+       
+        "Create product",
+        "Edit product",
+        "View product",
+        "Delete product",
+
+        
+        "Create order",
+        "Edit order",
+        "View order",
+        "Delete order",
+
+        "Create order item",
+        "Edit order item",
+        "View order item",
+        "Delete order item",
+
+        "Create review",
+        "Edit review",
+        "View review",
+        "Delete review",
+
+        "Create delivery",
+        "Edit delivery",
+        "View delivery",
+        "Delete delivery",
+        
+        "Create category",
+        "Edit category",
+        "View category",
+        "Delete category",
+
+        "Create user",
+        "Edit user",
+        "View user",
+        "Delete user"
+    ],
+
+    "roles": [
+        {
+            "name": "Super Admin",
+            "permissions": [
+                "Create farm",
+                "Edit farm",
+                "View farm",
+                "Delete farm",
+
+                "Create product",
+                "Edit product",
+                "View product",
+                "Delete product",
+
+                "Create order",
+                "Edit order",
+                "View order",
+                "Delete order",
+
+                "Create order item",
+                "Edit order item",
+                "View order item",
+                "Delete order item",
+
+                "Create review",
+                "Edit  review",
+                "View review",
+                "Delete review",
+
+                "Create delivery",
+                "Edit delivery",
+                "View delivery",
+                "Delete delivery",
+
+                "Create category",
+                "Edit category",
+                "View category",
+                "Delete category",
+
+                "Create user",
+                "Edit user",
+                "View user",
+                "Delete user"
+            ]
+        },
+        {
+            "name": "Farmer",
+            "permissions": [
+                "Create farm",
+                "Edit farm",
+                "View farm",
+                "Delete farm",
+
+                "Create product",
+                "Edit product",
+                "View product",
+                "Delete product",
+
+                "View order",
+                
+                "View order item",
+
+                "Create review",
+                "Edit review",
+                "View review",
+                "Delete review",
+
+                "View delivery",
+
+                "Create category",
+                "Edit category",
+                "View category",
+                "Delete category"
+                
+            ]
+        },
+        {
+            "name": "Buyer",
+            "permissions": [
+                "View farm",
+
+                "View product",
+
+                "View category",
+
+                "Create order",
+                "Edit order",
+                "View order",
+
+                "Create order item",
+                "View order item",
+                "Edit order item",
+                "Delete order item",
+
+
+                "Create review",
+                "Edit review",
+                "View review",
+                "Delete review",
+
+                "View delivery"
+            ]
+        },
+        {
+            "name": "Driver",
+            "permissions": [
+                "View delivery",
+                "Edit delivery", 
+
+                "View order" 
+            ]
+        }
+    ]
+}
