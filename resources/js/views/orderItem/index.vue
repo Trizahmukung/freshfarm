@@ -5,7 +5,7 @@
         <div class="col-sm-12">
               <div class="row">
                 <div class="col-sm-10">
-              <h4>Coupons</h4></div><div class="col-sm-2"><router-link to="/coupon/create" class="btn btn-sm btn-warning mb-2"><i class="fa fa-plus"></i> Add coupon</router-link></div></div>
+              <h4>Orderitems</h4></div><div class="col-sm-2"><router-link to="/orderitem/create" class="btn btn-sm btn-warning mb-2"><i class="fa fa-plus"></i> Add orderitem</router-link></div></div>
               <div class="table-responsive only-desktop">
           
 
@@ -29,22 +29,22 @@
     import axios from 'axios';
     import Network from "../../network-class";
     export default {
-        name:'couponIndex',
+        name:'orderitemIndex',
         created(){
-           this.getData(window.location.origin+'/api/coupon?page=1');
+           this.getData(window.location.origin+'/api/orderitem?page=1');
         },
         beforeCreate(){
           this.loading=true;
         },
       data:() => ({
-        coupons:[],
+        orderitems:[],
         links:[],
         current_page:null,
       }),
       methods: {
           getData: async function (url) {
               const data = await Network.get(url);
-              this.coupons=data.data;
+              this.orderitems=data.data;
               this.links=data.meta.links;
               this.current_page=url;
               this.loading=false;

@@ -23,8 +23,8 @@
 
       <!-- Farms Menu -->
       <vs-sidebar-item
-        id="farms"
-        to="/farms"
+        id="farm"
+        to="/farm"
         style="color: white !important;"
       >
         <template #icon>
@@ -35,8 +35,8 @@
 
       <!-- Products Menu -->
       <vs-sidebar-item
-        id="products"
-        to="/products"
+        id="product"
+        to="/product"
         style="color: white !important;"
       >
         <template #icon>
@@ -47,8 +47,8 @@
 
       <!-- Categories Menu -->
       <vs-sidebar-item
-        id="categories"
-        to="/categories"
+        id="category"
+        to="/category"
         style="color: white !important;"
       >
         <template #icon>
@@ -59,8 +59,8 @@
 
       <!-- Orders Menu -->
       <vs-sidebar-item
-        id="orders"
-        to="/orders"
+        id="order"
+        to="/order"
         style="color: white !important;"
       >
         <template #icon>
@@ -71,8 +71,8 @@
 
       <!-- Delivery Menu -->
       <vs-sidebar-item
-        id="deliveries"
-        to="/deliveries"
+        id="delivery"
+        to="/delivery"
         style="color: white !important;"
       >
         <template #icon>
@@ -83,8 +83,8 @@
 
       <!-- Reviews Menu -->
       <vs-sidebar-item
-        id="reviews"
-        to="/reviews"
+        id="review"
+        to="/review"
         style="color: white !important;"
       >
         <template #icon>
@@ -95,8 +95,8 @@
 
       <!-- User Management -->
       <vs-sidebar-item
-        id="users"
-        to="/users"
+        id="user"
+        to="/user"
         style="color: white !important;"
       >
         <template #icon>
@@ -107,8 +107,8 @@
 
       <!-- Analytics -->
       <vs-sidebar-item
-        id="analytics"
-        to="/analytics"
+        id="analytic"
+        to="/analytic"
         style="color: white !important;"
       >
         <template #icon>
@@ -119,8 +119,8 @@
 
       <!-- Settings -->
       <vs-sidebar-item
-        id="settings"
-        to="/settings"
+        id="setting"
+        to="/setting"
         style="color: white !important;"
       >
         <template #icon>

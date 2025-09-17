@@ -114,7 +114,7 @@ export default new VueRouter ({
                 {path:'/password/reset/:token', component: reset},
                 {path:'/get-started', component: getStarted},
                 {path:'/update-subscription', component: updateSubscription},
-                {path:'/create-company', component: createCompany},
+               // {path:'/create-company', component: createCompany},
                 //{path:'/profile',component:profile,},
                 //{path:'/account',component:account,},
             ] 
