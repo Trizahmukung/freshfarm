@@ -7,6 +7,8 @@ use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 class ProductController extends Controller
 {
     /**
@@ -15,8 +17,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    { 
         $this->authorize('viewAny', Product::class);
 
         $products = Product::orderBy('created_at','desc')->paginate(20);
@@ -25,7 +26,6 @@ class ProductController extends Controller
 
     public function products()
     {
-        //
         $this->authorize('viewAny', Product::class);
 
         $products = Product::orderBy('created_at','asc')->get();
@@ -34,10 +34,9 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        //
         $this->authorize('viewAny', Product::class);
 
-        $input=$request->all();
+        $input = $request->all();
         $product = Product::where('name','LIKE','%'.$input['searchTerm'].'%')
                         ->orderBy('created_at','asc')
                         ->paginate(20);
@@ -51,19 +50,48 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-        $this->authorize('create', Product::class);
+    { 
+        // $this->authorize('create', Product::class);
 
-        $input=$request->all();
+        $input = $request->all();
+        
+        // Enhanced validation
         $validator = Validator::make($input, [
-            'category_id'=>'required',
-         ]);
+            'farm_id' => 'required|exists:farms,id',
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|unique:products,slug',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'unit' => 'required|string|max:50',
+            'stock_quantity' => 'required|integer|min:0',
+            'harvest_date' => 'nullable|date',
+            'is_available' => 'boolean'
+        ]);
+
         if ($validator->fails()) {
             return response(['error' => $validator->errors()]);
-          }
-        $product=Product::create($input);
-        return new ProductResource($product);
+        }
+
+        // Auto-generate slug if not provided
+        if (empty($input['slug'])) {
+            $input['slug'] = Str::slug($input['name']);
+            
+            // Ensure slug is unique
+            $originalSlug = $input['slug'];
+            $counter = 1;
+            while (Product::where('slug', $input['slug'])->exists()) {
+                $input['slug'] = $originalSlug . '-' . $counter;
+                $counter++;
+            }
+        }
+
+        $product = Product::create($input);
+        
+        return response([
+            'message' => 'Product created successfully',
+            'data' => new ProductResource($product)
+        ]);
     }
 
     /**
@@ -74,7 +102,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
         $this->authorize('view', $product);
 
         return new ProductResource($product);
@@ -89,12 +116,34 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
         $this->authorize('update', $product);
 
-        $input=$request->all();
+        $input = $request->all();
+        
+        // Enhanced validation for update
+        $validator = Validator::make($input, [
+            'farm_id' => 'sometimes|exists:farms,id',
+            'category_id' => 'sometimes|exists:categories,id',
+            'name' => 'sometimes|string|max:255',
+            'slug' => 'sometimes|string|unique:products,slug,' . $product->id,
+            'description' => 'nullable|string',
+            'price' => 'sometimes|numeric|min:0',
+            'unit' => 'sometimes|string|max:50',
+            'stock_quantity' => 'sometimes|integer|min:0',
+            'harvest_date' => 'nullable|date',
+            'is_available' => 'boolean'
+        ]);
+
+        if ($validator->fails()) {
+            return response(['error' => $validator->errors()]);
+        }
+
         $product->update($input);
-        return new ProductResource($product);
+        
+        return response([
+            'message' => 'Product updated successfully',
+            'data' => new ProductResource($product)
+        ]);
     }
 
     /**
@@ -105,10 +154,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
         $this->authorize('delete', $product);
 
         $product->delete();
-        return response(['message' => 'product was deleted successfully']);
+        return response(['message' => 'Product deleted successfully']);
     }
 }
