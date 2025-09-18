@@ -5,16 +5,22 @@
         <div class="col-sm-4">
           <div class="card">
             <div class="card-body">
-              <h4>Coupon Details</h4>
+              <h4>Farm Details</h4>
               
-              <!-- table goes heres -->
-              <!-- table goes heres -->
-              <!-- table goes heres -->
-              <!-- table goes heres -->
+              <table class="table table-bordered">
+                <tbody>
+                  <tr><th>Name</th><td>{{ farm.name }}</td></tr>
+                  <tr><th>Description</th><td>{{ farm.description }}</td></tr>
+                  <tr><th>Address</th><td>{{ farm.address }}</td></tr>
+                  <tr><th>Latitude</th><td>{{ farm.latitude }}</td></tr>
+                  <tr><th>Longitude</th><td>{{ farm.longitude }}</td></tr>
+                  <tr><th>Verification Status</th><td>{{ farm.verification_status }}</td></tr>
+                </tbody>
+              </table>
 
-              <form action="#" @submit.prevent="deleteData(coupon)" >
+              <form action="#" @submit.prevent="deleteData(farm)" >
               <div class="btn-group mt-2">
-                <router-link :to="'/coupon/'+coupon.id+'/edit'" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</router-link>
+                <router-link :to="'/farm/'+farm.id+'/edit'" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</router-link>
                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button>
               </div>
             </form>
@@ -29,7 +35,7 @@
     import Network from "../../network-class";
     import axios from 'axios'
     export default {
-        name:'couponShow',
+        name:'farmShow',
         created(){
           this.id=this.$route.params.id;
           this.getData();
@@ -39,21 +45,21 @@
         },
         data:() => ({
         id:'',
-        coupon:[],
+        farm:[],
       }),
       methods: {
           getData: async function () {
-            var url='/api/coupon/'+this.id;
+            var url='/api/farm/'+this.id;
             const data = await Network.get(url);
-            this.coupon=data.data;
+            this.farm=data.data;
             this.loading=false;
           },
-          deleteData: async function (coupon) {
+          deleteData: async function (farm) {
             const isConfirmed = await this.$swal.fire();
             if(isConfirmed.isConfirmed){
-              var url='/api/coupon/'+this.id;
+              var url='/api/farm/'+this.id;
               await Network.delete(url);
-              this.$router.push('/coupon');
+              this.$router.push('/farm');
             }
 
           },

@@ -62,6 +62,8 @@ class FarmController extends Controller
         if ($validator->fails()) {
             return response(['error' => $validator->errors()]);
           }
+        $input['user_id'] =Auth::user()->id;
+        
         $farm=Farm::create($input);
         return new FarmResource($farm);
     }
