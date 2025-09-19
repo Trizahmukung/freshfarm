@@ -51,7 +51,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         //
         $this->authorize('create', Category::class);
 
