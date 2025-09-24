@@ -105,16 +105,16 @@
         Users
       </vs-sidebar-item>
 
-      <!-- Analytics -->
+      <!-- OrderItems -->
       <vs-sidebar-item
-        id="analytic"
-        to="/analytic"
+        id="orderItem"
+        to="/orderItem"
         style="color: white !important;"
       >
-        <template #icon>
-          <i class="fas fa-chart-pie"></i>
-        </template>
-        Analytics
+       <template #icon>
+        <i class="fas fa-shopping-cart"></i>
+       </template>
+       Order Items
       </vs-sidebar-item>
 
       <!-- Settings -->

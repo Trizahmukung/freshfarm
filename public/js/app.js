@@ -63377,19 +63377,19 @@ var render = function render() {
       color: "white !important"
     },
     attrs: {
-      id: "analytic",
-      to: "/analytic"
+      id: "orderItem",
+      to: "/orderItem"
     },
     scopedSlots: _vm._u([{
       key: "icon",
       fn: function fn() {
         return [_c("i", {
-          staticClass: "fas fa-chart-pie"
+          staticClass: "fas fa-shopping-cart"
         })];
       },
       proxy: true
     }])
-  }, [_vm._v("\n      Analytics\n    ")]), _vm._v(" "), _c("vs-sidebar-item", {
+  }, [_vm._v("\n     Order Items\n    ")]), _vm._v(" "), _c("vs-sidebar-item", {
     staticStyle: {
       color: "white !important"
     },
