@@ -142,7 +142,7 @@ export default {
         } else {
           // Assuming the API returns the created product data
           alert('Product created successfully!');
-          this.$router.push('/products/' + data.data.id); // Redirect to the new product page
+          this.$router.push('/product/' + data.data.id); // Redirect to the new product page
         }
       } catch (e) {
         // Handle network or other errors
